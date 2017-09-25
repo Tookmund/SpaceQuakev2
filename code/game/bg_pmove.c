@@ -503,7 +503,7 @@ static void PM_WaterMove( void ) {
 		wishvel[0] = 0;
 		wishvel[1] = 0;
 		//wishvel[2] = -60;		// sink towards bottom
-		wishvel[2] = 0
+		wishvel[2] = 0;
 	} else {
 		for (i=0 ; i<3 ; i++)
 			wishvel[i] = scale * pml.forward[i]*pm->cmd.forwardmove + scale * pml.right[i]*pm->cmd.rightmove;
@@ -609,8 +609,8 @@ static void PM_AirMove( void ) {
 
 	PM_Friction();
 
-	fmove = 0 //pm->cmd.forwardmove;
-	smove = 0 //pm->cmd.rightmove;
+	fmove = 0; //pm->cmd.forwardmove;
+	smove = 0; //pm->cmd.rightmove;
 
 	cmd = pm->cmd;
 	scale = PM_CmdScale( &cmd );
