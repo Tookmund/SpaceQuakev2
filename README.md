@@ -6,6 +6,6 @@ Based on ioquake3
 - [x] Zero Gravity
 - [x] Prevent airmove
 - [x] don't sink in water
-- [ ] origin copy
-- [ ] stick to ground
+- [x] origin copy
+- [x] stick to ground
 - [ ] directional jump
