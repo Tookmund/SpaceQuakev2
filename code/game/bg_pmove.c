@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../qcommon/q_shared.h"
 #include "bg_public.h"
 #include "bg_local.h"
+#include "SPAAACE.h"
 
 pmove_t		*pm;
 pml_t		pml;
@@ -356,6 +357,11 @@ PM_CheckJump
 =============
 */
 static qboolean PM_CheckJump( void ) {
+	vec3_t forward;
+	vec3_t right;
+	vec3_t up;
+	vec3_t muzzle;
+
 	if ( pm->ps->pm_flags & PMF_RESPAWNED ) {
 		return qfalse;		// don't allow jump until all buttons are up
 	}
@@ -377,7 +383,11 @@ static qboolean PM_CheckJump( void ) {
 	pm->ps->pm_flags |= PMF_JUMP_HELD;
 
 	pm->ps->groundEntityNum = ENTITYNUM_NONE;
-	pm->ps->velocity[2] = JUMP_VELOCITY;
+	//pm->ps->velocity[2] = JUMP_VELOCITY;
+	CalcVecDir(pm, forward, right, up, muzzle);
+	VectorNormalize(forward);
+	VectorScale(forward,JUMP_VELOCITY,forward);
+	VectorAdd(pm->ps->velocity,forward,pm->ps->velocity);
 	PM_AddEvent( EV_JUMP );
 
 	if ( pm->cmd.forwardmove >= 0 ) {

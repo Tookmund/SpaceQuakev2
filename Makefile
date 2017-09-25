@@ -2354,7 +2354,9 @@ Q3CGOBJ_ = \
   $(B)/$(BASEGAME)/cgame/cg_weapons.o \
   \
   $(B)/$(BASEGAME)/qcommon/q_math.o \
-  $(B)/$(BASEGAME)/qcommon/q_shared.o
+  $(B)/$(BASEGAME)/qcommon/q_shared.o \
+  \
+  $(B)/$(BASEGAME)/game/SPAAACE.o
 
 Q3CGOBJ = $(Q3CGOBJ_) $(B)/$(BASEGAME)/cgame/cg_syscalls.o
 Q3CGVMOBJ = $(Q3CGOBJ_:%.o=%.asm)

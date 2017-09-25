@@ -8,4 +8,4 @@ Based on ioquake3
 - [x] don't sink in water
 - [x] origin copy
 - [x] stick to ground
-- [ ] directional jump
+- [x] directional jump
