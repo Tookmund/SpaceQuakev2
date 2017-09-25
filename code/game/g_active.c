@@ -759,7 +759,6 @@ void ClientThink_real( gentity_t *ent ) {
 	vec3_t forward, right, up, muzzle, end, down;
 	trace_t trace;
 	int DROP_DISTANCE;
-	DROP_DISTANCE = 130;
 	//*/
 
 	client = ent->client;
@@ -1017,16 +1016,17 @@ void ClientThink_real( gentity_t *ent ) {
 		return;
 	}
 	//* SPAAACE stick to ground
-	if (client->pers.cmd.forwardmove < 0 && client->ps.persistant[PERS_GAMETYPE] != GT_DRONE)
+	if (client->pers.cmd.forwardmove < 0)
 	{
+		DROP_DISTANCE = 130;
 		CalcVecDir(&pm, forward, right, up, muzzle);
 		VectorNegate(up,down);
-		// project down by half lightning range
+		// project down by DROP_DISTANCE
 		VectorMA(pm.ps->origin, DROP_DISTANCE, down, end);
 		pm.trace(&trace, pm.ps->origin, vec3_origin, vec3_origin, end, pm.ps->clientNum, MASK_SHOT);
-		if (trace.fraction < 1.0f && trace.fraction > 0.2f)
+		if (trace.fraction > 0.2f)
 		{
-			VectorScale(down,20,down);
+			VectorScale(down,100,down);
 			VectorCopy(down,pm.ps->velocity);
 		}
 	}
