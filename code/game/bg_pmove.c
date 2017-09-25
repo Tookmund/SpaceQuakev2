@@ -619,8 +619,8 @@ static void PM_AirMove( void ) {
 
 	PM_Friction();
 
-	fmove = 0; //pm->cmd.forwardmove;
-	smove = 0; //pm->cmd.rightmove;
+	fmove = fabs(pm->cmd.forwardmove/4);
+	smove = pm->cmd.rightmove/4;
 
 	cmd = pm->cmd;
 	scale = PM_CmdScale( &cmd );
