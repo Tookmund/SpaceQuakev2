@@ -386,7 +386,7 @@ static qboolean PM_CheckJump( void ) {
 	//pm->ps->velocity[2] = JUMP_VELOCITY;
 	CalcVecDir(pm, forward, right, up, muzzle);
 	VectorNormalize(forward);
-	VectorScale(forward,JUMP_VELOCITY,forward);
+	VectorScale(forward,JUMP_VELOCITY*2,forward);
 	VectorAdd(pm->ps->velocity,forward,pm->ps->velocity);
 	PM_AddEvent( EV_JUMP );
 

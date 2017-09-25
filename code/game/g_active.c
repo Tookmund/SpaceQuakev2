@@ -1026,7 +1026,7 @@ void ClientThink_real( gentity_t *ent ) {
 		pm.trace(&trace, pm.ps->origin, vec3_origin, vec3_origin, end, pm.ps->clientNum, MASK_SHOT);
 		if (trace.fraction > 0.2f)
 		{
-			VectorScale(down,100,down);
+			VectorScale(down,350,down);
 			VectorCopy(down,pm.ps->velocity);
 		}
 	}
