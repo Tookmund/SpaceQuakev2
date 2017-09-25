@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 //
 
 #include "g_local.h"
+#include "SPAAACE.h"
 
 
 /*
@@ -754,6 +755,13 @@ void ClientThink_real( gentity_t *ent ) {
 	int			msec;
 	usercmd_t	*ucmd;
 
+	//* SPAAACE stick to ground init
+	vec3_t forward, right, up, muzzle, end, down;
+	trace_t trace;
+	int DROP_DISTANCE;
+	DROP_DISTANCE = 130;
+	//*/
+
 	client = ent->client;
 
 	// don't think if the client is not yet connected (and thus not yet spawned in)
@@ -1008,7 +1016,21 @@ void ClientThink_real( gentity_t *ent ) {
 		}
 		return;
 	}
-
+	//* SPAAACE stick to ground
+	if (client->pers.cmd.forwardmove < 0 && client->ps.persistant[PERS_GAMETYPE] != GT_DRONE)
+	{
+		CalcVecDir(&pm, forward, right, up, muzzle);
+		VectorNegate(up,down);
+		// project down by half lightning range
+		VectorMA(pm.ps->origin, DROP_DISTANCE, down, end);
+		pm.trace(&trace, pm.ps->origin, vec3_origin, vec3_origin, end, pm.ps->clientNum, MASK_SHOT);
+		if (trace.fraction < 1.0f && trace.fraction > 0.2f)
+		{
+			VectorScale(down,20,down);
+			VectorCopy(down,pm.ps->velocity);
+		}
+	}
+	//*/
 	// perform once-a-second actions
 	ClientTimerActions( ent, msec );
 }
