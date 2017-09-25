@@ -4,8 +4,8 @@ Quake3 Arena in Space!
 Based on ioquake3
 
 - [x] Zero Gravity
-- [ ] Prevent airmove
-- [ ] don't sink in water
+- [x] Prevent airmove
+- [x] don't sink in water
+- [ ] origin copy
 - [ ] stick to ground
 - [ ] directional jump
-- [ ] jumppad crash
